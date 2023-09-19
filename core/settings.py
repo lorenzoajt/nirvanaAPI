@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-d-*qr#j!0j3q*5f$-u1j1x+@8kimtmbqkkihme##**@$6&hvic
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'nirvanaAPI-dev.us-west-2.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'nirvanaapi-dev2.us-west-2.elasticbeanstalk.com']
 
 
 # Application definition
@@ -76,9 +76,13 @@ WSGI_APPLICATION = "core.wsgi.application"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'nirvanadbFree',
+        'USER': 'kinich',
+        'PASSWORD': 'riodejaneiro',
+        'HOST': 'nirvanadbfree.ckd2uw4z2tgr.us-west-2.rds.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
