@@ -26,6 +26,7 @@ class GroupViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
 class LessonsList(generics.GenericAPIView):    
+    queryset = Lesson.objects.all()
     def get(self, request):
         try:
             lessons = Lesson.objects.all()
@@ -36,6 +37,8 @@ class LessonsList(generics.GenericAPIView):
 
 
 class LessonDetail(generics.RetrieveAPIView):    
+    queryset = Lesson.objects.all()
+
     def get(self, request, pk):
         try:        
             lesson = Lesson.objects.get(pk=pk)
@@ -45,6 +48,7 @@ class LessonDetail(generics.RetrieveAPIView):
             return Response(data={E.args[0]}, status=status.HTTP_404_NOT_FOUND)
 
 class InstructorsList(generics.GenericAPIView):    
+    queryset = Instructor.objects.all()
     def get(self, request):
         try:
             instructors = Instructor.objects.all()
@@ -54,7 +58,8 @@ class InstructorsList(generics.GenericAPIView):
             return Response(status=status.HTTP_404_NOT_FOUND)
 
 
-class InstructorDetail(generics.RetrieveAPIView):    
+class InstructorDetail(generics.RetrieveAPIView):  
+    queryset = Instructor.objects.all()  
     def get(self, request, pk):
         try:                    
             instructor = Instructor.objects.filter(lesson__id= pk)
