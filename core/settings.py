@@ -97,7 +97,7 @@ else:
         'NAME': 'ebdb',
         'USER': 'kinich',
         'PASSWORD': 'riodejaneiro',
-        'HOST': 'nirvana-db.ckd2uw4z2tgr.us-west-2.rds.amazonaws.com',
+        'HOST': 'awseb-e-mpf2pmnd2i-stack-awsebrdsdatabase-e5x9xlxi2w23.ckd2uw4z2tgr.us-west-2.rds.amazonaws.com',
         'PORT': '5432',
     }
 }
