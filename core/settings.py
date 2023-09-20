@@ -94,10 +94,10 @@ else:
     DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'nirvanadbFree',
+        'NAME': 'ebdb',
         'USER': 'kinich',
         'PASSWORD': 'riodejaneiro',
-        'HOST': 'nirvanadbfree.ckd2uw4z2tgr.us-west-2.rds.amazonaws.com',
+        'HOST': 'nirvana-db.ckd2uw4z2tgr.us-west-2.rds.amazonaws.com',
         'PORT': '5432',
     }
 }
