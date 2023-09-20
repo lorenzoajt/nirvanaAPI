@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-d-*qr#j!0j3q*5f$-u1j1x+@8kimtmbqkkihme##**@$6&hvic
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'nirvanaAPI-dev.us-west-2.elasticbeanstalk.com', '172.31.11.44', '54.149.141.16']
+ALLOWED_HOSTS = ['127.0.0.1', 'nirvana-dev.us-west-2.elasticbeanstalk.com']
 
 
 # Application definition
