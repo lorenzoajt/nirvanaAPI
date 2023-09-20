@@ -90,17 +90,20 @@ if 'RDS_HOSTNAME' in os.environ:
             'PORT': os.environ['RDS_PORT'],
         }
     }
+    print("It's here----------------------------->>>>>>>>>>>>", os.environ['RDS_HOSTNAME'])
 else: 
     DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ebdb',
-        'USER': 'kinich',
-        'PASSWORD': 'riodejaneiro',
-        'HOST': 'awseb-e-mpf2pmnd2i-stack-awsebrdsdatabase-e5x9xlxi2w23.ckd2uw4z2tgr.us-west-2.rds.amazonaws.com',
-        'PORT': '5432',
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'nirvanadbFree',
+            'USER': 'kinich',
+            'PASSWORD': 'riodejaneiro',
+            'HOST': 'nirvanadbfree.ckd2uw4z2tgr.us-west-2.rds.amazonaws.com',
+            'PORT': '5432',
+        }
     }
-}
+    print("It's here----------------------------->>>>>>>>>>>>")
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
