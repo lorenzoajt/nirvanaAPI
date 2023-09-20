@@ -90,14 +90,14 @@ if 'RDS_HOSTNAME' in os.environ:
             'PORT': os.environ['RDS_PORT'],
         }
     }
-else: 
+else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'nirvanadbFree',
-            'USER': 'kinich',
+            'NAME': 'nirvanaBeastDB',
+            'USER': 'postgres',
             'PASSWORD': 'riodejaneiro',
-            'HOST': 'nirvanadbfree.ckd2uw4z2tgr.us-west-2.rds.amazonaws.com',
+            'HOST': 'localhost',
             'PORT': '5432',
         }
     }
