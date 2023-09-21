@@ -29,4 +29,4 @@ class InstructorSerializer(serializers.ModelSerializer):
     discipline = serializers.StringRelatedField(many=True)
     class Meta:
         model = Instructor
-        fields = ['id', 'name', 'picture', 'discipline']
+        fields = ['id', 'name', 'picture', 'discipline', 'bio']
