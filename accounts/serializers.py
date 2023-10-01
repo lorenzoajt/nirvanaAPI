@@ -25,12 +25,28 @@ class RegisterSerializer(serializers.ModelSerializer):
     
 # Login
 class LoginSerializer(serializers.Serializer):
-    username = serializers.CharField()
+    username_or_email = serializers.CharField()
     password = serializers.CharField()
 
     def validate(self, data):
-        user = authenticate(**data)
-        if user and user.is_active:
-            return user
-        raise serializers.ValidationError("incorrect Credentials")
-    
+        username_or_email = data.get('username_or_email')
+        password = data.get('password')
+
+        user = None
+        try:
+            user = User.objects.get(username = username_or_email)
+        except User.DoesNotExist:
+            try:
+                user = User.objects.get(email = username_or_email)
+            except User.DoesNotExist:
+                pass
+        if user:
+            if user.check_password(password):
+                if user.is_active:
+                    return user
+                else:
+                    raise serializers.ValidationError("El usuario no está activo")
+            else:
+                raise serializers.ValidationError("Credenciales incorrectas")
+        else:
+            raise serializers.ValidationError("No se encontró un usuario con las creadenciales proporcionadas")
