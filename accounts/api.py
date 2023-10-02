@@ -9,15 +9,18 @@ class RegisterAPI(generics.GenericAPIView):
     serializer_class = RegisterSerializer
 
     def post(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        user = serializer.save()
-        _, token = AuthToken.objects.create(user)
+        try:
+            serializer = self.get_serializer(data=request.data)
+            serializer.is_valid(raise_exception=True)
+            user = serializer.save()
+            _, token = AuthToken.objects.create(user)
 
-        return Response({
-            "user": UserSerializer(user, context=self.get_serializer_context()).data,
-            "token": token
-        })
+            return Response({
+                "user": UserSerializer(user, context=self.get_serializer_context()).data,
+                "token": token
+            })
+        except Exception as e:
+            return Response({'msg': str(e)}, status=e.status_code)
 
 class LoginAPI(generics.GenericAPIView):
     serializer_class = LoginSerializer
@@ -33,8 +36,8 @@ class LoginAPI(generics.GenericAPIView):
                 "user": UserSerializer(user, context=self.get_serializer_context()).data,
                 "token": token
             })
-        except Exception as E:
-            return Response(data={E.args[0]}, status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response({'msg': str(e)}, status=e.status_code)
             
 class UserAPI(generics.RetrieveAPIView):
     permission_classes = [
