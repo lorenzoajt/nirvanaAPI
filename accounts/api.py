@@ -48,11 +48,10 @@ class UserAPI(generics.RetrieveAPIView):
     def get_object(self):
         return self.request.user
     
-class TokenRefresh(generics.GenericAPIView):
-    permission_classes = [
-        permissions.IsAuthenticated,
-    ]
-    
+class TokenRefresh(generics.GenericAPIView):    
+    """
+        Create new token for the user
+    """    
     def get (self, request):
         user = request.user
         _, token = AuthToken.objects.create(user)

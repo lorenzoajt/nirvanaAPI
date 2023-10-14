@@ -1,5 +1,5 @@
 from django.contrib import admin
-from lessons.models import Lesson, Instructor, Skill, Discipline
+from lessons.models import Lesson, Instructor, Skill, Discipline, Serie
 
 # Register your models here.
 # class LessonAdmin(admin.ModelAdmin):
@@ -15,3 +15,4 @@ admin.site.register(Lesson)
 admin.site.register(Instructor)
 admin.site.register(Skill)
 admin.site.register(Discipline)
+admin.site.register(Serie)

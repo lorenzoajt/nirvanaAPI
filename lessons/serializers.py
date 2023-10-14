@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from .models import Lesson, Instructor
+from .models import Lesson, Instructor, Serie
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -30,3 +30,9 @@ class InstructorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Instructor
         fields = ['id', 'name', 'picture', 'discipline', 'bio']
+
+class SerieSerializer(serializers.ModelSerializer):
+    instructor = serializers.StringRelatedField(many=True)
+    class Meta: 
+        model = Serie
+        fields = '__all__'

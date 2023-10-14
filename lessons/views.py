@@ -3,8 +3,8 @@ from rest_framework.response import Response
 from rest_framework import viewsets
 from rest_framework import permissions
 from rest_framework import generics
-from .serializers import UserSerializer, GroupSerializer, LessonSerializer, LessonOverviewSerializer, InstructorSerializer
-from .models import Lesson, Discipline, Instructor, Skill
+from .serializers import UserSerializer, GroupSerializer, LessonSerializer, LessonOverviewSerializer, InstructorSerializer, SerieSerializer
+from .models import Lesson, Discipline, Instructor, Skill, Serie
 from rest_framework.views import APIView
 from rest_framework import status
 
@@ -67,3 +67,12 @@ class InstructorDetail(generics.RetrieveAPIView):
             return Response(serializer.data)   
         except Exception as E:
             return Response(data={E.args[0]}, status=status.HTTP_404_NOT_FOUND)
+        
+class SeriesList(generics.ListAPIView):
+    queryset = Serie.objects.all()
+    serializer_class = SerieSerializer    
+
+    # def list(self, request):        
+    #     queryset = self.get_queryset()
+    #     serializer = SerieSerializer(queryset, many=True)
+    #     return Response(serializer.data)
