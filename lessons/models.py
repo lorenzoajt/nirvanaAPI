@@ -5,7 +5,8 @@ class Lesson(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=100, blank=True, default='')
     summary = models.TextField(max_length=1000)
-    serie = models.ForeignKey('Serie', null=True, blank=True, on_delete=models.CASCADE)
+    serie = models.ForeignKey('Serie', related_name='lessons', null=True, blank=True, on_delete=models.CASCADE)
+    style = models.ForeignKey('Style', null=True, blank=True, on_delete=models.CASCADE)
     instructor = models.ManyToManyField('Instructor')
     discipline = models.ManyToManyField('Discipline')
     skill = models.ManyToManyField('Skill')
@@ -60,5 +61,14 @@ class Skill(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     name = models.CharField(max_length=100, blank=True, default='')
     
+    def __str__(self):        
+        return self.name
+
+class Style(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    name = models.CharField(max_length=100, blank=True, default='')
+    picture = models.CharField(max_length=100, default='')
+    description = models.CharField(max_length=100, default='', blank=True)
+
     def __str__(self):        
         return self.name

@@ -3,9 +3,8 @@ from rest_framework.response import Response
 from rest_framework import viewsets
 from rest_framework import permissions
 from rest_framework import generics
-from .serializers import UserSerializer, GroupSerializer, LessonSerializer, LessonOverviewSerializer, InstructorSerializer, SerieSerializer
-from .models import Lesson, Discipline, Instructor, Skill, Serie
-from rest_framework.views import APIView
+from .serializers import UserSerializer, GroupSerializer, LessonSerializer, LessonOverviewSerializer, InstructorSerializer, SerieSerializer, StyleSerializer
+from .models import Lesson, Instructor, Style, Serie 
 from rest_framework import status
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -70,9 +69,26 @@ class InstructorDetail(generics.RetrieveAPIView):
         
 class SeriesList(generics.ListAPIView):
     queryset = Serie.objects.all()
-    serializer_class = SerieSerializer    
+    serializer_class = SerieSerializer
 
-    # def list(self, request):        
-    #     queryset = self.get_queryset()
-    #     serializer = SerieSerializer(queryset, many=True)
-    #     return Response(serializer.data)
+class SerieDetail(generics.GenericAPIView):
+    queryset = Lesson.objects.all()
+    def get(self, request, pk):
+        try:        
+            serie = Serie.objects.get(pk=pk)
+            serializer = SerieSerializer(serie)
+            return Response(serializer.data)   
+        except Exception as E:
+            return Response(data={E.args[0]}, status=status.HTTP_404_NOT_FOUND)
+
+
+class LessonsBySerie(generics.ListAPIView):
+    serializer_class = LessonSerializer
+
+    def get_queryset(self):
+        serie_id = self.kwargs['pk']
+        return Lesson.objects.filter(serie_id=serie_id)
+
+class StylesList(generics.ListAPIView):
+    queryset = Style.objects.all()
+    serializer_class = StyleSerializer    
